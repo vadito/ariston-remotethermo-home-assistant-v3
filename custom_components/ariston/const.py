@@ -169,6 +169,15 @@ ARISTON_WATER_HEATER_TYPES: tuple[AristonWaterHeaterEntityDescription, ...] = (
 
 ARISTON_SENSOR_TYPES: tuple[AristonSensorEntityDescription, ...] = (
     AristonSensorEntityDescription(
+        key=DeviceProperties.OUTSIDE_TEMP,
+        name=f"{NAME} outside temperature",
+        device_class=SensorDeviceClass.TEMPERATURE,
+        state_class=SensorStateClass.MEASUREMENT,
+        get_native_value=AristonGalevoDevice.get_outside_temperature,
+        get_native_unit_of_measurement=AristonGalevoDevice.get_ch_flow_setpoint_temp_unit,
+        system_types=[SystemType.GALEVO],
+    ),
+    AristonSensorEntityDescription(
         key=DeviceProperties.HEATING_CIRCUIT_PRESSURE,
         name=f"{NAME} heating circuit pressure",
         device_class=SensorDeviceClass.PRESSURE,

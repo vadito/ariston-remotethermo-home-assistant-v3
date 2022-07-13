@@ -39,10 +39,14 @@ class AristonGalevoDevice(AristonDevice):
         self.features[CustomDeviceFeatures.HAS_DHW] = self.features.get(
             DeviceFeatures.HAS_BOILER
         )
+        
+    def get_outside_temperature(self) -> float:
+        """Get water heater current temperature"""
+        return self._get_item_by_id(DeviceProperties.OUTSIDE_TEMP, PropertyType.VALUE)
 
     def get_water_heater_current_temperature(self) -> float:
         """Get water heater current temperature"""
-        return self._get_item_by_id(DeviceProperties.DHW_TEMP, PropertyType.VALUE)
+        return self._get_item_by_id(DeviceProperties.DHW_STORAGE_TEMPERATURE, PropertyType.VALUE)
 
     def get_water_heater_minimum_temperature(self) -> float:
         """Get water heater minimum temperature"""
